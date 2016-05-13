@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wheels>
+	<wheel id="w1">
+		<brand>Let's Roll</brand>
+		<name>Basic</name>
+		<size>52</size>
+		<price>11990</price>
+		<image>normal.png</image>
+	</wheel>
+	<wheel id="w2">
+		<brand>Nature Wheels</brand>
+		<name>Forest</name>
+		<size>51</size>
+		<price>11990</price>
+		<image>green.png</image>
+	</wheel>
+	<wheel id="w3">
+		<brand>Let's Roll</brand>
+		<name>Purple</name>
+		<size>51</size>
+		<price>11990</price>
+		<image>purple.png</image>
+	</wheel>
+</wheels>

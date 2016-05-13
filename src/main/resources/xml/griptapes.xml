@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<griptapes>
+	<griptape id="g1">
+		<brand>Epic</brand>
+		<name>Neon</name>
+		<size>9.00</size>
+		<price>1790</price>
+		<image>green.png</image>
+	</griptape>
+	<griptape id="g2">
+		<brand>Foo Grips</brand>
+		<name>Classic</name>
+		<size>8.00</size>
+		<price>1990</price>
+		<image>black.png</image>
+	</griptape>
+	<griptape id="g3">
+		<brand>Foo Grips</brand>
+		<name>Classic</name>
+		<size>9.00</size>
+		<price>1990</price>
+		<image>black.png</image>
+	</griptape>
+	<griptape id="g4">
+		<brand>Epic</brand>
+		<name>Plum</name>
+		<size>9.00</size>
+		<price>2490</price>
+		<image>purple.png</image>
+	</griptape>
+	<griptape id="g5">
+		<brand>Heat</brand>
+		<name>Firestorm</name>
+		<size>9.00</size>
+		<price>3990</price>
+		<image>red.png</image>
+	</griptape>
+</griptapes>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bearings>
+	<bearing id="b1">
+		<brand>Bear Bearings</brand>
+		<name>The Black Bear</name>
+		<category>ABEC 7</category>
+		<price>3120</price>
+		<image>black.png</image>
+	</bearing>
+	<bearing id="b2">
+		<brand>Cool Bearings</brand>
+		<name>The Safe One</name>
+		<category>ABEC 3</category>
+		<price>3390</price>
+		<image>grey.png</image>
+	</bearing>
+	<bearing id="b3">
+		<brand>Cool Bearings</brand>
+		<name>Brownie</name>
+		<category>ABEC 5</category>
+		<price>3490</price>
+		<image>brown.png</image>
+	</bearing>
+	<bearing id="b4">
+		<brand>Volcano</brand>
+		<name>Superhot</name>
+		<category>ABEC 7</category>
+		<price>5990</price>
+		<image>red.png</image>
+	</bearing>
+	<bearing id="b5">
+		<brand>Style Bearings</brand>
+		<name>Orange</name>
+		<category>ABEC 5</category>
+		<price>6490</price>
+		<image>orange.png</image>
+	</bearing>
+</bearings>

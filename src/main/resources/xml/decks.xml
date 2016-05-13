@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decks>
+	<deck id="d1">
+		<brand>Superdecks</brand>
+		<name>Simple</name>
+		<size>8.00</size>
+		<price>13990</price>
+		<image>brown.png</image>
+	</deck>
+	<deck id="d2">
+		<brand>Superdecks</brand>
+		<name>Orange Juice</name>
+		<size>7.75</size>
+		<price>13990</price>
+		<image>orange.png</image>
+	</deck>
+	<deck id="d3">
+		<brand>PIMP</brand>
+		<name>Speed</name>
+		<size>7.875</size>
+		<price>13990</price>
+		<image>purple.png</image>
+	</deck>
+	<deck id="d4">
+		<brand>Killer Skateboards</brand>
+		<name>Blue</name>
+		<size>8.25</size>
+		<price>17990</price>
+		<image>blue.png</image>
+	</deck>
+	<deck id="d5">
+		<brand>Killer Skateboards</brand>
+		<name>Red</name>
+		<size>8.00</size>
+		<price>17990</price>
+		<image>red.png</image>
+	</deck>
+</decks>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trucks>
+	<truck id="t1">
+		<brand>Power Trucks</brand>
+		<name>Basic 139</name>
+		<model>139</model>
+		<price>8490</price>
+		<image>grey.png</image>
+	</truck>
+	<truck id="t2">
+		<brand>Power Trucks</brand>
+		<name>Basic 149</name>
+		<model>149</model>
+		<price>8490</price>
+		<image>grey.png</image>
+	</truck>
+	<truck id="t3">
+		<brand>Power Trucks</brand>
+		<name>Basic 159</name>
+		<model>159</model>
+		<price>8990</price>
+		<image>grey.png</image>
+	</truck>
+	<truck id="t4">
+		<brand>Power Trucks</brand>
+		<name>Bloodthirsty</name>
+		<model>149</model>
+		<price>9990</price>
+		<image>red.png</image>
+	</truck>
+	<truck id="t5">
+		<brand>Bad Guy Trucks</brand>
+		<name>Night</name>
+		<model>139</model>
+		<price>8490</price>
+		<image>black.png</image>
+	</truck>
+</trucks>
