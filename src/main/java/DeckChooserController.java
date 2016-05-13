@@ -1,4 +1,5 @@
 
+import controllers.SkateboardEditorController;
 import dao.impl.DeckDAOXMLImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,6 +37,7 @@ public class DeckChooserController {
 				if(event.isPrimaryButtonDown() && event.getClickCount()==2){
 					
 					System.out.println(table.getSelectionModel().getSelectedItem());
+					SkateboardEditorController.setDeck(table.getSelectionModel().getSelectedItem());
 					
 				}
 				
