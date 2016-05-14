@@ -12,29 +12,12 @@ import javafx.stage.Stage;
 
 public class MainController {
 	
+	private static final String SKATEBOARDEDITOR = "/fxml/SkateboardEditor.fxml";
+	
 	@FXML
 	private void newSkateboard(){
 		System.out.println("új deszka");
-		
-		try {
-			
-			Stage newSkateboardStage = new Stage();
-			
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml/SkateboardEditor.fxml"));
-			
-			Scene scene = new Scene(root, 640, 480);
-			
-			newSkateboardStage.setScene(scene);
-			newSkateboardStage.setTitle("Gördeszka szerkesztő");
-			newSkateboardStage.setResizable(false);
-			newSkateboardStage.initModality(Modality.APPLICATION_MODAL);
-			newSkateboardStage.showAndWait();
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		loadMenuPoint(SKATEBOARDEDITOR, "Gördeszka összeállító");
 	}
 	
 	@FXML
@@ -51,6 +34,29 @@ public class MainController {
 	private void exit(){
 		System.out.println("kilépés");
 		Main.closeStage();
+	}
+	
+	private void loadMenuPoint(String fxml, String title){
+		
+		try {
+			
+			Stage stage = new Stage();
+			
+			Parent root = FXMLLoader.load(getClass().getResource(fxml));
+			
+			Scene scene = new Scene(root, 640, 480);
+			
+			stage.setScene(scene);
+			stage.setTitle(title);
+			stage.setResizable(false);
+			stage.initModality(Modality.WINDOW_MODAL);
+			stage.showAndWait();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

@@ -17,41 +17,52 @@ import models.Wheel;
 
 public class SkateboardEditorController {
 	
+	private static final String DECKCHOOSER = "/fxml/DeckChooser.fxml";
+	private static final String BEARINGCHOOSER = "/fxml/BearingChooser.fxml";
+	private static final String TRUCKCHOOSER = "/fxml/TruckChooser.fxml";
+	private static final String WHEELCHOOSER = "/fxml/WheelChooser.fxml";
+	private static final String GRIPTAPECHOOSER = "/fxml/GriptapeChooser.fxml";
+	
 	private static Skateboard skateboard;
 	
 	@FXML
 	private void initialize(){
-		System.out.println("csá");
+		System.out.println("SkateboardEditorController initialize");
 		
+		// üres gördeszka létrehozása
 		skateboard = new Skateboard();
 		
 	}
 	
 	@FXML
 	private void chooseDeck(){
-		
-		try {
-			
-			Stage stage = new Stage();
-			
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml/DeckChooser.fxml"));
-			
-			Scene scene = new Scene(root, 640, 480);
-			
-			stage.setScene(scene);
-			stage.initModality(Modality.WINDOW_MODAL);
-			stage.showAndWait();
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		loadAccessoryChooser(DECKCHOOSER, "Lapok");
+	}
+	
+	@FXML
+	private void chooseBearing(){
+		loadAccessoryChooser(BEARINGCHOOSER, "Csapágyak");
+	}
+	
+	@FXML
+	private void chooseTruck(){
+		loadAccessoryChooser(TRUCKCHOOSER, "Felfüggesztések");
+	}
+	
+	@FXML
+	private void chooseWheel(){
+		loadAccessoryChooser(WHEELCHOOSER, "Kerekek");
+	}
+	
+	@FXML
+	private void chooseGriptape(){
+		loadAccessoryChooser(GRIPTAPECHOOSER, "Smirglik");
 	}
 	
 	@FXML
 	private void validate(){
 		
+		// TODO: gördezska ellenőrző függvény lesz
 		System.out.println(skateboard);
 		
 	}
@@ -74,6 +85,29 @@ public class SkateboardEditorController {
 	
 	public static void setWheel(Wheel wheel){
 		skateboard.setWheel(wheel);
+	}
+	
+	private void loadAccessoryChooser(String fxml, String title){
+		
+		try {
+			
+			Stage stage = new Stage();
+			
+			Parent root = FXMLLoader.load(getClass().getResource(fxml));
+			
+			Scene scene = new Scene(root, 640, 480);
+			
+			stage.setScene(scene);
+			stage.setTitle(title);
+			stage.setResizable(false);
+			stage.initModality(Modality.WINDOW_MODAL);
+			stage.showAndWait();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

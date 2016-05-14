@@ -4,15 +4,15 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DeckChooserController">
+<BorderPane prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GriptapeChooserController">
    <center>
       <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="brand" prefWidth="110.0" resizable="false" style="-fx-alignment: CENTER;" text="Márka" />
           <TableColumn fx:id="name" prefWidth="110.0" resizable="false" style="-fx-alignment: CENTER;" text="Név" />
             <TableColumn fx:id="size" prefWidth="110.0" resizable="false" style="-fx-alignment: CENTER;" text="Méret (inch)" />
-            <TableColumn fx:id="price" minWidth="0.0" prefWidth="110.0" resizable="false" style="-fx-alignment: CENTER;" text="Ár (Ft)" />
-            <TableColumn fx:id="image" minWidth="1.0" prefWidth="199.0" resizable="false" style="-fx-alignment: CENTER;" text="Kép" />
+            <TableColumn fx:id="price" prefWidth="110.0" resizable="false" style="-fx-alignment: CENTER;" text="Ár (Ft)" />
+            <TableColumn fx:id="image" prefWidth="199.0" resizable="false" style="-fx-alignment: CENTER;" text="Kép" />
         </columns>
       </TableView>
    </center>
