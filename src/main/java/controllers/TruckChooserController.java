@@ -103,7 +103,8 @@ public class TruckChooserController {
 					// TODO: hozzáadjuk a "kosárhoz" a választott lapot
 					// SkateboardEditorController.setTruck(table.getSelectionModel().getSelectedItem());
 					sec.setTruck(truck);
-					sec.setTruckLabel(truck.readableToString());
+					
+					sec.updateScene();
 					
 					// TODO: ablak bezárása
 					Stage stage = (Stage) table.getScene().getWindow();

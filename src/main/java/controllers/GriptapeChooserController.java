@@ -103,7 +103,8 @@ public class GriptapeChooserController {
 					// TODO: hozzáadjuk a "kosárhoz" a választott lapot
 					// SkateboardEditorController.setGriptape(table.getSelectionModel().getSelectedItem());
 					sec.setGriptape(griptape);
-					sec.setGriptapeLabel(griptape.readableToString());
+					
+					sec.updateScene();
 					
 					// TODO: ablak bezárása
 					Stage stage = (Stage) table.getScene().getWindow();

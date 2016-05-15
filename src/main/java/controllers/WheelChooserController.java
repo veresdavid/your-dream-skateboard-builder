@@ -103,7 +103,8 @@ public class WheelChooserController {
 					// TODO: hozzáadjuk a "kosárhoz" a választott lapot
 					// SkateboardEditorController.setWheel(table.getSelectionModel().getSelectedItem());
 					sec.setWheel(wheel);
-					sec.setWheelLabel(wheel.readableToString());
+					
+					sec.updateScene();
 					
 					// TODO: ablak bezárása
 					Stage stage = (Stage) table.getScene().getWindow();

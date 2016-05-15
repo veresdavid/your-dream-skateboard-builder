@@ -103,7 +103,8 @@ public class BearingChooserController {
 					// TODO: hozzáadjuk a "kosárhoz" a választott lapot
 					// SkateboardEditorController.setBearing(table.getSelectionModel().getSelectedItem());
 					sec.setBearing(bearing);
-					sec.setBearingLabel(bearing.readableToString());
+					
+					sec.updateScene();
 					
 					// TODO: ablak bezárása
 					Stage stage = (Stage) table.getScene().getWindow();

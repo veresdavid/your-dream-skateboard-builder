@@ -103,7 +103,8 @@ public class DeckChooserController {
 					// TODO: hozzáadjuk a "kosárhoz" a választott lapot
 					// SkateboardEditorController.setDeck(table.getSelectionModel().getSelectedItem());
 					sec.setDeck(deck);
-					sec.setDeckLabel(deck.readableToString());
+					
+					sec.updateScene();
 					
 					// TODO: ablak bezárása
 					Stage stage = (Stage) table.getScene().getWindow();

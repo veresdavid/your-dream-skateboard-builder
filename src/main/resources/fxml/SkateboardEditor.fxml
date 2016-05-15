@@ -76,7 +76,7 @@
             <Label fx:id="wheel" text="-" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <Label alignment="CENTER_RIGHT" layoutX="368.0" layoutY="362.0" prefHeight="45.0" prefWidth="215.0" text="Ár: 0Ft">
+      <Label fx:id="price" alignment="CENTER_RIGHT" layoutX="368.0" layoutY="362.0" prefHeight="45.0" prefWidth="215.0" text="Ár: 0Ft">
          <font>
             <Font size="18.0" />
          </font>

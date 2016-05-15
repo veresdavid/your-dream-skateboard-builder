@@ -29,6 +29,9 @@ public class SkateboardEditorController {
 	
 	private Skateboard skateboard;
 	
+	private PriceCalculator priceCalculator;
+	private SkateboardValidator skateboardValidator;
+	
 	@FXML
 	private TextField name;
 	@FXML
@@ -41,6 +44,8 @@ public class SkateboardEditorController {
 	private Label bearing;
 	@FXML
 	private Label wheel;
+	@FXML
+	private Label price;
 	
 	@FXML
 	private void initialize(){
@@ -48,6 +53,9 @@ public class SkateboardEditorController {
 		
 		// üres gördeszka létrehozása
 		skateboard = new Skateboard();
+		
+		priceCalculator = new PriceCalculator();
+		skateboardValidator = new SkateboardValidator();
 		
 	}
 	
@@ -157,16 +165,6 @@ public class SkateboardEditorController {
 		// TODO: gördezska ellenőrző függvény lesz
 		System.out.println("Ellenőrzés");
 		
-		PriceCalculator pc = new PriceCalculator();
-		int p = pc.calculateSkateboardPrice(skateboard);
-		System.out.println("Ár: " + p);
-		
-		SkateboardValidator sv = new SkateboardValidator();
-		boolean iv = sv.isValidSkateboard(skateboard);
-		System.out.println("Érvényes: " + iv);
-		
-		System.out.println(skateboard.getName());
-		
 	}
 	
 	@FXML
@@ -194,24 +192,59 @@ public class SkateboardEditorController {
 		skateboard.setWheel(wheel);
 	}
 	
-	public void setBearingLabel(String str){
-		bearing.setText(str);
+	private void updateBearingLabel(){
+		if(skateboard.getBearing()!=null){
+			bearing.setText(skateboard.getBearing().readableToString());
+		}else{
+			bearing.setText("-");
+		}
 	}
 	
-	public void setTruckLabel(String str){
-		truck.setText(str);
+	private void updateTruckLabel(){
+		if(skateboard.getTruck()!=null){
+			truck.setText(skateboard.getTruck().readableToString());
+		}else{
+			truck.setText("-");
+		}
 	}
 	
-	public void setWheelLabel(String str){
-		wheel.setText(str);
+	private void updateWheelLabel(){
+		if(skateboard.getWheel()!=null){
+			wheel.setText(skateboard.getWheel().readableToString());
+		}else{
+			wheel.setText("-");
+		}
 	}
 	
-	public void setDeckLabel(String str){
-		deck.setText(str);
+	private void updateDeckLabel(){
+		if(skateboard.getDeck()!=null){
+			deck.setText(skateboard.getDeck().readableToString());
+		}else{
+			deck.setText("-");
+		}
 	}
 	
-	public void setGriptapeLabel(String str){
-		griptape.setText(str);
+	private void updateGriptapeLabel(){
+		if(skateboard.getGriptape()!=null){
+			griptape.setText(skateboard.getGriptape().readableToString());
+		}else{
+			griptape.setText("-");
+		}
+	}
+	
+	private void updatePriceLabel(){
+		price.setText("Ár: " + priceCalculator.calculateSkateboardPrice(skateboard) + "Ft");
+	}
+	
+	public void updateScene(){
+		
+		updateBearingLabel();
+		updateDeckLabel();
+		updateGriptapeLabel();
+		updateTruckLabel();
+		updateWheelLabel();
+		updatePriceLabel();
+		
 	}
 	
 	private void loadAccessoryChooser(Parent root, String title){
