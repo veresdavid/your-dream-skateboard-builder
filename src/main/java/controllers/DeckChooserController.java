@@ -19,6 +19,8 @@ import models.Deck;
 
 public class DeckChooserController {
 	
+	private SkateboardEditorController sec;
+	
 	@FXML
 	TableView<Deck> table;
 	
@@ -92,11 +94,16 @@ public class DeckChooserController {
 				
 				if(event.isPrimaryButtonDown() && event.getClickCount()==2){
 					
+					// a kiválasztott deszka
+					Deck deck = table.getSelectionModel().getSelectedItem();
+					
 					// TODO: kiírjuk melyik deszkát választottuk ki
-					System.out.println(table.getSelectionModel().getSelectedItem());
+					System.out.println(deck);
 					
 					// TODO: hozzáadjuk a "kosárhoz" a választott lapot
-					SkateboardEditorController.setDeck(table.getSelectionModel().getSelectedItem());
+					// SkateboardEditorController.setDeck(table.getSelectionModel().getSelectedItem());
+					sec.setDeck(deck);
+					sec.setDeckLabel(deck.readableToString());
 					
 					// TODO: ablak bezárása
 					Stage stage = (Stage) table.getScene().getWindow();
@@ -113,6 +120,10 @@ public class DeckChooserController {
 		// táblázat tartalmának beállítása
 		table.setItems(list);
 		
+	}
+	
+	public void setSEC(SkateboardEditorController sec){
+		this.sec = sec;
 	}
 
 }

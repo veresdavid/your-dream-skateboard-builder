@@ -63,4 +63,8 @@ public class Griptape {
 		return ReflectionToStringBuilder.toString(this);
 	}
 
+	public String readableToString() {
+		return brand + ", " + name + ", " + size + "\", " + price + "Ft";
+	}
+
 }

@@ -19,6 +19,8 @@ import models.Griptape;
 
 public class GriptapeChooserController {
 	
+	private SkateboardEditorController sec;
+	
 	@FXML
 	TableView<Griptape> table;
 	
@@ -92,11 +94,16 @@ public class GriptapeChooserController {
 				
 				if(event.isPrimaryButtonDown() && event.getClickCount()==2){
 					
+					// a kiválasztott smirgli
+					Griptape griptape = table.getSelectionModel().getSelectedItem();
+					
 					// TODO: kiírjuk melyik deszkát választottuk ki
-					System.out.println(table.getSelectionModel().getSelectedItem());
+					System.out.println(griptape);
 					
 					// TODO: hozzáadjuk a "kosárhoz" a választott lapot
-					SkateboardEditorController.setGriptape(table.getSelectionModel().getSelectedItem());
+					// SkateboardEditorController.setGriptape(table.getSelectionModel().getSelectedItem());
+					sec.setGriptape(griptape);
+					sec.setGriptapeLabel(griptape.readableToString());
 					
 					// TODO: ablak bezárása
 					Stage stage = (Stage) table.getScene().getWindow();
@@ -113,6 +120,10 @@ public class GriptapeChooserController {
 		// táblázat tartalmának beállítása
 		table.setItems(list);
 		
+	}
+	
+	public void setSEC(SkateboardEditorController sec){
+		this.sec = sec;
 	}
 
 }

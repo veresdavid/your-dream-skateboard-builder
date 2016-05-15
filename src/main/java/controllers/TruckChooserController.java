@@ -19,6 +19,8 @@ import models.Truck;
 
 public class TruckChooserController {
 	
+	private SkateboardEditorController sec;
+	
 	@FXML
 	TableView<Truck> table;
 	
@@ -92,11 +94,16 @@ public class TruckChooserController {
 				
 				if(event.isPrimaryButtonDown() && event.getClickCount()==2){
 					
+					// a kiválasztott felfüggesztés
+					Truck truck = table.getSelectionModel().getSelectedItem();
+					
 					// TODO: kiírjuk melyik deszkát választottuk ki
-					System.out.println(table.getSelectionModel().getSelectedItem());
+					System.out.println(truck);
 					
 					// TODO: hozzáadjuk a "kosárhoz" a választott lapot
-					SkateboardEditorController.setTruck(table.getSelectionModel().getSelectedItem());
+					// SkateboardEditorController.setTruck(table.getSelectionModel().getSelectedItem());
+					sec.setTruck(truck);
+					sec.setTruckLabel(truck.readableToString());
 					
 					// TODO: ablak bezárása
 					Stage stage = (Stage) table.getScene().getWindow();
@@ -113,6 +120,10 @@ public class TruckChooserController {
 		// táblázat tartalmának beállítása
 		table.setItems(list);
 		
+	}
+	
+	public void setSEC(SkateboardEditorController sec){
+		this.sec = sec;
 	}
 
 }

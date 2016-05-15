@@ -19,6 +19,8 @@ import models.Bearing;
 
 public class BearingChooserController {
 	
+	private SkateboardEditorController sec;
+	
 	@FXML
 	TableView<Bearing> table;
 	
@@ -92,11 +94,16 @@ public class BearingChooserController {
 				
 				if(event.isPrimaryButtonDown() && event.getClickCount()==2){
 					
+					// a kiválasztott csapágy
+					Bearing bearing = table.getSelectionModel().getSelectedItem();
+					
 					// TODO: kiírjuk melyik deszkát választottuk ki
-					System.out.println(table.getSelectionModel().getSelectedItem());
+					System.out.println(bearing);
 					
 					// TODO: hozzáadjuk a "kosárhoz" a választott lapot
-					SkateboardEditorController.setBearing(table.getSelectionModel().getSelectedItem());
+					// SkateboardEditorController.setBearing(table.getSelectionModel().getSelectedItem());
+					sec.setBearing(bearing);
+					sec.setBearingLabel(bearing.readableToString());
 					
 					// TODO: ablak bezárása
 					Stage stage = (Stage) table.getScene().getWindow();
@@ -113,6 +120,10 @@ public class BearingChooserController {
 		// táblázat tartalmának beállítása
 		table.setItems(list);
 		
+	}
+	
+	public void setSEC(SkateboardEditorController sec){
+		this.sec = sec;
 	}
 
 }

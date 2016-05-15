@@ -2,10 +2,14 @@ package controllers;
 
 import java.io.IOException;
 
+import businesslogic.PriceCalculator;
+import businesslogic.SkateboardValidator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Bearing;
@@ -23,7 +27,20 @@ public class SkateboardEditorController {
 	private static final String WHEELCHOOSER = "/fxml/WheelChooser.fxml";
 	private static final String GRIPTAPECHOOSER = "/fxml/GriptapeChooser.fxml";
 	
-	private static Skateboard skateboard;
+	private Skateboard skateboard;
+	
+	@FXML
+	private TextField name;
+	@FXML
+	private Label deck;
+	@FXML
+	private Label griptape;
+	@FXML
+	private Label truck;
+	@FXML
+	private Label bearing;
+	@FXML
+	private Label wheel;
 	
 	@FXML
 	private void initialize(){
@@ -36,77 +53,178 @@ public class SkateboardEditorController {
 	
 	@FXML
 	private void chooseDeck(){
-		loadAccessoryChooser(DECKCHOOSER, "Lapok");
+		
+		try {
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(DECKCHOOSER));
+			Parent root = (Parent) loader.load();
+			
+			DeckChooserController controller = loader.getController();
+			controller.setSEC(this);
+			
+			loadAccessoryChooser(root, "Lapok");
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@FXML
 	private void chooseBearing(){
-		loadAccessoryChooser(BEARINGCHOOSER, "Csapágyak");
+		
+		try {
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(BEARINGCHOOSER));
+			Parent root = (Parent) loader.load();
+			
+			BearingChooserController controller = loader.getController();
+			controller.setSEC(this);
+			
+			loadAccessoryChooser(root, "Csapágyak");
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@FXML
 	private void chooseTruck(){
-		loadAccessoryChooser(TRUCKCHOOSER, "Felfüggesztések");
+		
+		try {
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(TRUCKCHOOSER));
+			Parent root = (Parent) loader.load();
+			
+			TruckChooserController controller = loader.getController();
+			controller.setSEC(this);
+			
+			loadAccessoryChooser(root, "Felfüggesztések");
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@FXML
 	private void chooseWheel(){
-		loadAccessoryChooser(WHEELCHOOSER, "Kerekek");
+		
+		try {
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(WHEELCHOOSER));
+			Parent root = (Parent) loader.load();
+			
+			WheelChooserController controller = loader.getController();
+			controller.setSEC(this);
+			
+			loadAccessoryChooser(root, "Kerekek");
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@FXML
 	private void chooseGriptape(){
-		loadAccessoryChooser(GRIPTAPECHOOSER, "Smirglik");
+		
+		try {
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(GRIPTAPECHOOSER));
+			Parent root = (Parent) loader.load();
+			
+			GriptapeChooserController controller = loader.getController();
+			controller.setSEC(this);
+			
+			loadAccessoryChooser(root, "Smirglik");
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@FXML
 	private void validate(){
 		
 		// TODO: gördezska ellenőrző függvény lesz
-		System.out.println(skateboard);
+		System.out.println("Ellenőrzés");
+		
+		PriceCalculator pc = new PriceCalculator();
+		int p = pc.calculateSkateboardPrice(skateboard);
+		System.out.println("Ár: " + p);
+		
+		SkateboardValidator sv = new SkateboardValidator();
+		boolean iv = sv.isValidSkateboard(skateboard);
+		System.out.println("Érvényes: " + iv);
+		
+		System.out.println(skateboard.getName());
 		
 	}
 	
-	public static void setBearing(Bearing bearing){
+	@FXML
+	private void save(){
+		System.out.println("Mentés");
+	}
+	
+	public void setBearing(Bearing bearing){
 		skateboard.setBearing(bearing);
 	}
 	
-	public static void setDeck(Deck deck){
+	public void setDeck(Deck deck){
 		skateboard.setDeck(deck);
 	}
 	
-	public static void setGriptape(Griptape griptape){
+	public void setGriptape(Griptape griptape){
 		skateboard.setGriptape(griptape);
 	}
 	
-	public static void setTruck(Truck truck){
+	public void setTruck(Truck truck){
 		skateboard.setTruck(truck);
 	}
 	
-	public static void setWheel(Wheel wheel){
+	public void setWheel(Wheel wheel){
 		skateboard.setWheel(wheel);
 	}
 	
-	private void loadAccessoryChooser(String fxml, String title){
+	public void setBearingLabel(String str){
+		bearing.setText(str);
+	}
+	
+	public void setTruckLabel(String str){
+		truck.setText(str);
+	}
+	
+	public void setWheelLabel(String str){
+		wheel.setText(str);
+	}
+	
+	public void setDeckLabel(String str){
+		deck.setText(str);
+	}
+	
+	public void setGriptapeLabel(String str){
+		griptape.setText(str);
+	}
+	
+	private void loadAccessoryChooser(Parent root, String title){
 		
-		try {
-			
-			Stage stage = new Stage();
-			
-			Parent root = FXMLLoader.load(getClass().getResource(fxml));
-			
-			Scene scene = new Scene(root, 640, 480);
-			
-			stage.setScene(scene);
-			stage.setTitle(title);
-			stage.setResizable(false);
-			stage.initModality(Modality.WINDOW_MODAL);
-			stage.showAndWait();
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Stage stage = new Stage();
+		
+		Scene scene = new Scene(root, 640, 480);
+		
+		stage.setScene(scene);
+		stage.setTitle(title);
+		stage.setResizable(false);
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.showAndWait();
 		
 	}
 

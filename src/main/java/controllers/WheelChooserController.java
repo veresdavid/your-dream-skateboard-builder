@@ -19,6 +19,8 @@ import models.Wheel;
 
 public class WheelChooserController {
 	
+	private SkateboardEditorController sec;
+	
 	@FXML
 	TableView<Wheel> table;
 	
@@ -92,11 +94,16 @@ public class WheelChooserController {
 				
 				if(event.isPrimaryButtonDown() && event.getClickCount()==2){
 					
+					// a kiválasztott kerék
+					Wheel wheel = table.getSelectionModel().getSelectedItem();
+					
 					// TODO: kiírjuk melyik deszkát választottuk ki
-					System.out.println(table.getSelectionModel().getSelectedItem());
+					System.out.println(wheel);
 					
 					// TODO: hozzáadjuk a "kosárhoz" a választott lapot
-					SkateboardEditorController.setWheel(table.getSelectionModel().getSelectedItem());
+					// SkateboardEditorController.setWheel(table.getSelectionModel().getSelectedItem());
+					sec.setWheel(wheel);
+					sec.setWheelLabel(wheel.readableToString());
 					
 					// TODO: ablak bezárása
 					Stage stage = (Stage) table.getScene().getWindow();
@@ -113,6 +120,10 @@ public class WheelChooserController {
 		// táblázat tartalmának beállítása
 		table.setItems(list);
 		
+	}
+	
+	public void setSEC(SkateboardEditorController sec){
+		this.sec = sec;
 	}
 
 }

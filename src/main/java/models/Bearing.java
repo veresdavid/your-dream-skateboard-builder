@@ -62,5 +62,9 @@ public class Bearing {
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this);
 	}
+	
+	public String readableToString(){
+		return brand + ", " + name + ", " + category + ", " + price + "Ft"; 
+	}
 
 }

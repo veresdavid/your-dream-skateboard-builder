@@ -63,4 +63,8 @@ public class Wheel {
 		return ReflectionToStringBuilder.toString(this);
 	}
 
+	public String readableToString() {
+		return brand + ", " + name + ", " + size + "mm, " + price + "Ft";
+	}
+
 }

@@ -63,4 +63,8 @@ public class Truck {
 		return ReflectionToStringBuilder.toString(this);
 	}
 
+	public String readableToString() {
+		return brand + ", " + name + ", " + model + ", " + price + "Ft";
+	}
+
 }

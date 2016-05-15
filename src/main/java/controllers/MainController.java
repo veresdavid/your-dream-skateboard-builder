@@ -49,7 +49,7 @@ public class MainController {
 			stage.setScene(scene);
 			stage.setTitle(title);
 			stage.setResizable(false);
-			stage.initModality(Modality.WINDOW_MODAL);
+			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.showAndWait();
 			
 		} catch (IOException e) {
