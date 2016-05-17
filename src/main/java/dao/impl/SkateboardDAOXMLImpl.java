@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +42,9 @@ public class SkateboardDAOXMLImpl implements SkateboardDAO {
 			
 			SkateboardHandler handler = new SkateboardHandler();
 			
-			File file = new File("skateboards.xml");
+			Path path = Paths.get(System.getProperty("user.home"), ".your-dream-skateboard-builder", "skateboards.xml");
+			
+			File file = path.toFile();
 			
 			if(!file.exists()){
 				return new ArrayList<>();
@@ -126,7 +130,26 @@ public class SkateboardDAOXMLImpl implements SkateboardDAO {
 			t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 			
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("skateboards.xml"));
+			
+			Path dirPath = Paths.get(System.getProperty("user.home"), ".your-dream-skateboard-builder");
+			Path filePath = Paths.get(System.getProperty("user.home"), ".your-dream-skateboard-builder", "skateboards.xml");
+			
+			if(!dirPath.toFile().exists()){
+				dirPath.toFile().mkdir();
+			}
+			
+			File file = filePath.toFile();
+			
+			if(!file.exists()){
+				try {
+					file.createNewFile();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			StreamResult result = new StreamResult(file);
 			
 			t.transform(source, result);
 			

@@ -1,6 +1,9 @@
 package dao.impl;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -108,7 +111,28 @@ public class OrderDAOXMLImpl implements OrderDAO {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
 				LocalDateTime now = LocalDateTime.now();
 				
-				StreamResult result = new StreamResult(new File("order_" + formatter.format(now) + ".xml"));
+				Path dirPath = Paths.get(System.getProperty("user.home"), ".your-dream-skateboard-builder");
+				String fileName = "order_" + formatter.format(now) + ".xml";
+				Path filePath = Paths.get(System.getProperty("user.home"), ".your-dream-skateboard-builder", fileName);
+				
+				System.out.println(filePath);
+				
+				if(!dirPath.toFile().exists()){
+					dirPath.toFile().mkdir();
+				}
+				
+				File file = filePath.toFile();
+				
+				if(!file.exists()){
+					try {
+						file.createNewFile();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+				StreamResult result = new StreamResult(file);
 				
 				t.transform(source, result);
 				
