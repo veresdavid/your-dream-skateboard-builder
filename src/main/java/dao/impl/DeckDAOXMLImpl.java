@@ -43,4 +43,13 @@ public class DeckDAOXMLImpl implements DeckDAO {
 
 	}
 
+	public Deck getDeckById(String id) {
+		for (Deck deck : getAllDecks()) {
+			if(deck.getId().equals(id))
+				return deck;
+		}
+		
+		return null;
+	}
+
 }

@@ -22,25 +22,25 @@ public class GriptapeChooserController {
 	private SkateboardEditorController sec;
 	
 	@FXML
-	TableView<Griptape> table;
+	private TableView<Griptape> table;
 	
 	@FXML
-	TableColumn<Griptape, String> brand;
+	private TableColumn<Griptape, String> brand;
 	
 	@FXML
-	TableColumn<Griptape, String> name;
+	private TableColumn<Griptape, String> name;
 	
 	@FXML
-	TableColumn<Griptape, Double> size;
+	private TableColumn<Griptape, Double> size;
 	
 	@FXML
-	TableColumn<Griptape, Integer> price;
+	private TableColumn<Griptape, Integer> price;
 	
 	@FXML
-	TableColumn<Griptape, String> image;
+	private TableColumn<Griptape, String> image;
 	
 	@FXML
-	public void initialize(){
+	private void initialize(){
 		
 		// a táblázatunk oszlopainak beállítása
 		brand.setCellValueFactory(new PropertyValueFactory<Griptape, String>("brand"));
@@ -97,18 +97,16 @@ public class GriptapeChooserController {
 					// a kiválasztott smirgli
 					Griptape griptape = table.getSelectionModel().getSelectedItem();
 					
-					// TODO: kiírjuk melyik deszkát választottuk ki
+					// kiírjuk
 					System.out.println(griptape);
 					
-					// TODO: hozzáadjuk a "kosárhoz" a választott lapot
-					// SkateboardEditorController.setGriptape(table.getSelectionModel().getSelectedItem());
+					// hozzáadjuk a "kosárhoz"
 					sec.setGriptape(griptape);
 					
 					sec.updateScene();
 					
-					// TODO: ablak bezárása
-					Stage stage = (Stage) table.getScene().getWindow();
-					stage.close();
+					// ablak bezárása
+					closeStage();
 					
 				}
 				
@@ -125,6 +123,13 @@ public class GriptapeChooserController {
 	
 	public void setSEC(SkateboardEditorController sec){
 		this.sec = sec;
+	}
+	
+	private void closeStage(){
+		
+		Stage stage = (Stage) table.getScene().getWindow();
+		stage.close();
+		
 	}
 
 }

@@ -40,6 +40,16 @@ public class BearingDAOXMLImpl implements BearingDAO {
 		}
 		
 		return null;
+		
+	}
+
+	public Bearing getBearingById(String id) {
+		for (Bearing bearing : getAllBearings()) {
+			if(bearing.getId().equals(id))
+				return bearing;
+		}
+		
+		return null;
 	}
 
 }

@@ -22,25 +22,25 @@ public class BearingChooserController {
 	private SkateboardEditorController sec;
 	
 	@FXML
-	TableView<Bearing> table;
+	private TableView<Bearing> table;
 	
 	@FXML
-	TableColumn<Bearing, String> brand;
+	private TableColumn<Bearing, String> brand;
 	
 	@FXML
-	TableColumn<Bearing, String> name;
+	private TableColumn<Bearing, String> name;
 	
 	@FXML
-	TableColumn<Bearing, String> category;
+	private TableColumn<Bearing, String> category;
 	
 	@FXML
-	TableColumn<Bearing, Integer> price;
+	private TableColumn<Bearing, Integer> price;
 	
 	@FXML
-	TableColumn<Bearing, String> image;
+	private TableColumn<Bearing, String> image;
 	
 	@FXML
-	public void initialize(){
+	private void initialize(){
 		
 		// a táblázatunk oszlopainak beállítása
 		brand.setCellValueFactory(new PropertyValueFactory<Bearing, String>("brand"));
@@ -97,18 +97,16 @@ public class BearingChooserController {
 					// a kiválasztott csapágy
 					Bearing bearing = table.getSelectionModel().getSelectedItem();
 					
-					// TODO: kiírjuk melyik deszkát választottuk ki
+					// kiírjuk
 					System.out.println(bearing);
 					
-					// TODO: hozzáadjuk a "kosárhoz" a választott lapot
-					// SkateboardEditorController.setBearing(table.getSelectionModel().getSelectedItem());
+					// hozzáadjuk a "kosárhoz"
 					sec.setBearing(bearing);
 					
 					sec.updateScene();
 					
-					// TODO: ablak bezárása
-					Stage stage = (Stage) table.getScene().getWindow();
-					stage.close();
+					// ablak bezárása
+					closeStage();
 					
 				}
 				
@@ -125,6 +123,13 @@ public class BearingChooserController {
 	
 	public void setSEC(SkateboardEditorController sec){
 		this.sec = sec;
+	}
+	
+	private void closeStage(){
+		
+		Stage stage = (Stage) table.getScene().getWindow();
+		stage.close();
+		
 	}
 
 }

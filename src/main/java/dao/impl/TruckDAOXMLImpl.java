@@ -42,4 +42,14 @@ public class TruckDAOXMLImpl implements TruckDAO {
 		return null;
 	}
 
+	@Override
+	public Truck getTruckById(String id) {
+		for (Truck truck : getAllTrucks()) {
+			if(truck.getId().equals(id))
+				return truck;
+		}
+		
+		return null;
+	}
+
 }

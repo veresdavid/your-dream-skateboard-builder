@@ -6,5 +6,7 @@ import models.Deck;
 public interface DeckDAO {
 	
 	public List<Deck> getAllDecks();
+	
+	public Deck getDeckById(String id);
 
 }

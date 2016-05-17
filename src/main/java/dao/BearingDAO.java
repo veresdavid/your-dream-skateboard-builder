@@ -6,5 +6,7 @@ import models.Bearing;
 public interface BearingDAO {
 	
 	public List<Bearing> getAllBearings();
+	
+	public Bearing getBearingById(String id);
 
 }

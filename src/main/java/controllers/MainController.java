@@ -13,21 +13,25 @@ import javafx.stage.Stage;
 public class MainController {
 	
 	private static final String SKATEBOARDEDITOR = "/fxml/SkateboardEditor.fxml";
+	private static final String ORDER = "/fxml/Order.fxml";
+	private static final String HELP = "/fxml/Help.fxml";
 	
 	@FXML
 	private void newSkateboard(){
 		System.out.println("új deszka");
-		loadMenuPoint(SKATEBOARDEDITOR, "Gördeszka összeállító");
-	}
-	
-	@FXML
-	private void showSkateboards(){
-		System.out.println("deszkák");
+		loadMenuPoint(SKATEBOARDEDITOR, "Gördeszka szerkesztő");
 	}
 	
 	@FXML
 	private void order(){
 		System.out.println("LEADTÁK A RENDELÉST");
+		loadMenuPoint(ORDER, "Rendelés");
+	}
+	
+	@FXML
+	private void help(){
+		System.out.println("SEGÍTSETEK!");
+		loadMenuPoint(HELP, "Súgó");
 	}
 	
 	@FXML

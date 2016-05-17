@@ -1,5 +1,7 @@
 package app;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,19 +18,26 @@ public class Main extends Application {
 	}
 
 	@Override
-	public void start(Stage stage) throws Exception {
+	public void start(Stage stage){
 		// TODO Auto-generated method stub
 		
 		Main.stage = stage;
 		
-		Parent root = FXMLLoader.load(getClass().getResource("/fxml/Main.fxml"));
-		
-		Scene scene = new Scene(root, 320, 240);
-		
-		stage.setTitle("Your Dream Skateboard Builder");
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.show();
+		try {
+			
+			Parent root = FXMLLoader.load(getClass().getResource("/fxml/Main.fxml"));
+			
+			Scene scene = new Scene(root, 320, 240);
+			
+			stage.setTitle("Főmenü");
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.show();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	

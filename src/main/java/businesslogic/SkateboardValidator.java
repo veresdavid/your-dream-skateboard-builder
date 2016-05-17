@@ -15,6 +15,7 @@ public class SkateboardValidator {
 		if(skateboard!=null){
 			
 			if(isCorrectName(skateboard.getName())
+					&& isEveryAccessorySet(skateboard)
 					&& isDeckFitsWithGriptape(skateboard.getDeck(), skateboard.getGriptape())
 					&& isDeckFitsWithTruck(skateboard.getDeck(), skateboard.getTruck())){
 				return true;
@@ -30,10 +31,24 @@ public class SkateboardValidator {
 	
 	public boolean isCorrectName(String name){
 		
-		if(name==null || name==""){
+		if(name==null || name.length()==0){
 			return false;
 		}else{
 			return true;
+		}
+		
+	}
+	
+	public boolean isEveryAccessorySet(Skateboard skateboard){
+		
+		if(skateboard.getBearing()!=null
+				&& skateboard.getDeck()!=null
+				&& skateboard.getGriptape()!=null
+				&& skateboard.getTruck()!=null
+				&& skateboard.getWheel()!=null){
+			return true;
+		}else{
+			return false;
 		}
 		
 	}

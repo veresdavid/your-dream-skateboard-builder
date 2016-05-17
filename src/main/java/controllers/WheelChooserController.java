@@ -22,25 +22,25 @@ public class WheelChooserController {
 	private SkateboardEditorController sec;
 	
 	@FXML
-	TableView<Wheel> table;
+	private TableView<Wheel> table;
 	
 	@FXML
-	TableColumn<Wheel, String> brand;
+	private TableColumn<Wheel, String> brand;
 	
 	@FXML
-	TableColumn<Wheel, String> name;
+	private TableColumn<Wheel, String> name;
 	
 	@FXML
-	TableColumn<Wheel, Integer> size;
+	private TableColumn<Wheel, Integer> size;
 	
 	@FXML
-	TableColumn<Wheel, Integer> price;
+	private TableColumn<Wheel, Integer> price;
 	
 	@FXML
-	TableColumn<Wheel, String> image;
+	private TableColumn<Wheel, String> image;
 	
 	@FXML
-	public void initialize(){
+	private void initialize(){
 		
 		// a táblázatunk oszlopainak beállítása
 		brand.setCellValueFactory(new PropertyValueFactory<Wheel, String>("brand"));
@@ -97,18 +97,16 @@ public class WheelChooserController {
 					// a kiválasztott kerék
 					Wheel wheel = table.getSelectionModel().getSelectedItem();
 					
-					// TODO: kiírjuk melyik deszkát választottuk ki
+					// kiírjuk
 					System.out.println(wheel);
 					
-					// TODO: hozzáadjuk a "kosárhoz" a választott lapot
-					// SkateboardEditorController.setWheel(table.getSelectionModel().getSelectedItem());
+					// hozzáadjuk a "kosárhoz"
 					sec.setWheel(wheel);
 					
 					sec.updateScene();
 					
-					// TODO: ablak bezárása
-					Stage stage = (Stage) table.getScene().getWindow();
-					stage.close();
+					// ablak bezárása
+					closeStage();
 					
 				}
 				
@@ -125,6 +123,13 @@ public class WheelChooserController {
 	
 	public void setSEC(SkateboardEditorController sec){
 		this.sec = sec;
+	}
+	
+	private void closeStage(){
+		
+		Stage stage = (Stage) table.getScene().getWindow();
+		stage.close();
+		
 	}
 
 }

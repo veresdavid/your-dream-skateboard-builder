@@ -42,4 +42,14 @@ public class WheelDAOXMLImpl implements WheelDAO {
 		return null;
 	}
 
+	@Override
+	public Wheel getWheelById(String id) {
+		for (Wheel wheel : getAllWheels()) {
+			if(wheel.getId().equals(id))
+				return wheel;
+		}
+		
+		return null;
+	}
+
 }

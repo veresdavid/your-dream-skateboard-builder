@@ -4,10 +4,13 @@ import java.io.IOException;
 
 import businesslogic.PriceCalculator;
 import businesslogic.SkateboardValidator;
+import dao.impl.SkateboardDAOXMLImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -26,6 +29,7 @@ public class SkateboardEditorController {
 	private static final String TRUCKCHOOSER = "/fxml/TruckChooser.fxml";
 	private static final String WHEELCHOOSER = "/fxml/WheelChooser.fxml";
 	private static final String GRIPTAPECHOOSER = "/fxml/GriptapeChooser.fxml";
+	private static final String VALIDATIONREPORT = "/fxml/ValidationReport.fxml";
 	
 	private Skateboard skateboard;
 	
@@ -162,14 +166,58 @@ public class SkateboardEditorController {
 	@FXML
 	private void validate(){
 		
-		// TODO: gördezska ellenőrző függvény lesz
 		System.out.println("Ellenőrzés");
+		
+		collectData();
+		
+		try {
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(VALIDATIONREPORT));
+			Parent root = (Parent) loader.load();
+			
+			ValidationReportController controller = loader.getController();
+			controller.setSkateboard(skateboard);
+			controller.validationReport();
+			
+			Stage stage = new Stage();
+			
+			Scene scene = new Scene(root, 400, 200);
+			
+			stage.setScene(scene);
+			stage.setTitle("Érvényességi jelentés");
+			stage.setResizable(false);
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.showAndWait();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
 	@FXML
 	private void save(){
 		System.out.println("Mentés");
+		
+		collectData();
+		
+		SkateboardDAOXMLImpl sdxi = new SkateboardDAOXMLImpl();
+		
+		if(skateboardValidator.isValidSkateboard(skateboard)){
+			
+			sdxi.insert(skateboard);
+			
+			saveSuccess();
+			
+			closeStage();
+			
+		}else{
+			
+			saveFail();
+			
+		}
+		
 	}
 	
 	public void setBearing(Bearing bearing){
@@ -244,6 +292,37 @@ public class SkateboardEditorController {
 		updateTruckLabel();
 		updateWheelLabel();
 		updatePriceLabel();
+		
+	}
+	
+	private void collectData(){
+		skateboard.setName(name.getText());
+	}
+	
+	private void closeStage(){
+		Stage stage = (Stage) name.getScene().getWindow();
+		stage.close();
+	}
+	
+	private void saveSuccess(){
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Sikeres mentés");
+		alert.setHeaderText(null);
+		alert.setContentText("Az összeállított gördeszkát sikeresen elmentettük!");
+		
+		alert.showAndWait();
+		
+	}
+	
+	private void saveFail(){
+		
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Hiba");
+		alert.setHeaderText("A gördeszka hibásan lett összeállítva!");
+		alert.setContentText("Nyomj az Ellenőrzés gombra részletesebb információkért!");
+		
+		alert.showAndWait();
 		
 	}
 	

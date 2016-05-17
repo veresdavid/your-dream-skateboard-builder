@@ -16,7 +16,7 @@ public class GriptapeDAOXMLImpl implements GriptapeDAO {
 
 	public List<Griptape> getAllGriptapes() {
 		
-SAXParserFactory spf = SAXParserFactory.newInstance();
+		SAXParserFactory spf = SAXParserFactory.newInstance();
 		
 		try {
 			
@@ -37,6 +37,16 @@ SAXParserFactory spf = SAXParserFactory.newInstance();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	@Override
+	public Griptape getGriptapeById(String id) {
+		for (Griptape griptape : getAllGriptapes()) {
+			if(griptape.getId().equals(id))
+				return griptape;
 		}
 		
 		return null;

@@ -1,7 +1,5 @@
 package models;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
 public class Skateboard {
 	
 	private String name;
@@ -61,7 +59,7 @@ public class Skateboard {
 
 	@Override
 	public String toString() {
-		return ReflectionToStringBuilder.toString(this);
+		return name;
 	}
 
 }

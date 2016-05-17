@@ -6,5 +6,7 @@ import models.Truck;
 public interface TruckDAO {
 	
 	public List<Truck> getAllTrucks();
+	
+	public Truck getTruckById(String id);
 
 }
