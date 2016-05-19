@@ -33,7 +33,7 @@ public class Order {
 	private String customerComment;
 
 	/**
-	 * Visszaadja a megrendelni kívánt gördeszkát, egy {@link models.Skateboard} objektumot
+	 * Visszaadja a megrendelni kívánt gördeszkát, egy {@link models.Skateboard} objektumot.
 	 * 
 	 * @return a megrendelni kívánt gördeszka, egy {@link models.Skateboard} objektum
 	 */

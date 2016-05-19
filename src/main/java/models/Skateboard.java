@@ -49,7 +49,7 @@ public class Skateboard {
 	}
 
 	/**
-	 * Visszaadja a gördeszka csapágyát, egy {@link models.Bearing} objektumot
+	 * Visszaadja a gördeszka csapágyát, egy {@link models.Bearing} objektumot.
 	 * 
 	 * @return a gördeszka csapágya, egy {@link models.Bearing} objektum
 	 */
@@ -67,7 +67,7 @@ public class Skateboard {
 	}
 	
 	/**
-	 * Visszaadja a gördeszka lapját, egy {@link models.Deck} objektumot
+	 * Visszaadja a gördeszka lapját, egy {@link models.Deck} objektumot.
 	 * 
 	 * @return a gördeszka lapja, egy {@link models.Deck} objektum
 	 */
@@ -85,7 +85,7 @@ public class Skateboard {
 	}
 	
 	/**
-	 * Visszaadja a gördeszka smirglijét, egy {@link models.Griptape} objektumot
+	 * Visszaadja a gördeszka smirglijét, egy {@link models.Griptape} objektumot.
 	 * 
 	 * @return a gördeszka smirglije, egy {@link models.Griptape} objektum
 	 */
@@ -103,7 +103,7 @@ public class Skateboard {
 	}
 	
 	/**
-	 * Visszaadja a gördeszka felfüggesztését, egy {@link models.Truck} objektumot
+	 * Visszaadja a gördeszka felfüggesztését, egy {@link models.Truck} objektumot.
 	 * 
 	 * @return a gördeszka smirglije, egy {@link models.Truck} objektum
 	 */
@@ -121,7 +121,7 @@ public class Skateboard {
 	}
 	
 	/**
-	 * Visszaadja a gördeszka kerekét, egy {@link models.Wheel} objektumot
+	 * Visszaadja a gördeszka kerekét, egy {@link models.Wheel} objektumot.
 	 * 
 	 * @return a gördeszka kereke, egy {@link models.Wheel} objektum
 	 */
