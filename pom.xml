@@ -6,13 +6,7 @@
   
   <name>Your Dream Skateboard Builder</name>
   
-  <description>
-  	A Your Dream Skateboard Builder egy olyan Java alkalmazás, mely segítségével 
-  	az alkalmazás adatbázisában meglévő gördeszka alkatrészekből összeállíthatsz 
-  	magadnak egy teljesen egyedi gördeszkát, eltárolhatod, és akár meg is rendelheted! 
-  	Az alkalmazás segít neked abban is, hogy a hibásan összeállított, azaz nem összeillő 
-  	komponenesekből álló gördeszkát ne tudj létrehozni.
-  </description>
+  <description>A Your Dream Skateboard Builder egy olyan Java alkalmazás, mely segítségével az alkalmazás adatbázisában meglévő gördeszka alkatrészekből összeállíthatsz magadnak egy teljesen egyedi gördeszkát, eltárolhatod, és akár meg is rendelheted! Az alkalmazás segít neked abban is, hogy a hibásan összeállított, azaz nem összeillő komponenesekből álló gördeszkát ne tudj létrehozni.</description>
   
   <inceptionYear>2016</inceptionYear>
   
