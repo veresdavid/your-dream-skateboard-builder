@@ -37,8 +37,6 @@ public class Main extends Application {
 			stage.setResizable(false);
 			stage.show();
 			
-			logger.info("Az alkalmazás elindult.");
-			
 		} catch (IOException e) {
 			logger.error("Kivétel: ", e);
 		}
