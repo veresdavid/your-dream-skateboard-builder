@@ -18,6 +18,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -29,6 +31,11 @@ import models.Order;
  * Az XML íráshoz DOM-ot használ.
  */
 public class OrderDAOXMLImpl implements OrderDAO {
+	
+	/**
+	 * A naplózáshoz használt objektum.
+	 */
+	private static Logger logger = LoggerFactory.getLogger(OrderDAOXMLImpl.class);
 
 	/**
 	 * A függvény a paraméterként megkapott rendelést elmenti egy XML állományban,
@@ -130,6 +137,7 @@ public class OrderDAOXMLImpl implements OrderDAO {
 				
 				if(!dirPath.toFile().exists()){
 					dirPath.toFile().mkdir();
+					logger.info("A .your-dream-skateboard-builder nevű mappa még nem létezett, ezért létrehoztuk!");
 				}
 				
 				File file = filePath.toFile();
@@ -138,8 +146,7 @@ public class OrderDAOXMLImpl implements OrderDAO {
 					try {
 						file.createNewFile();
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						logger.error("Kivétel: ", e);
 					}
 				}
 				
@@ -148,14 +155,11 @@ public class OrderDAOXMLImpl implements OrderDAO {
 				t.transform(source, result);
 				
 			} catch (ParserConfigurationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error("Kivétel: ", e);
 			} catch (TransformerConfigurationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error("Kivétel: ", e);
 			} catch (TransformerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error("Kivétel: ", e);
 			}
 		
 		}

@@ -22,6 +22,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
@@ -36,6 +38,11 @@ import saxhandlers.SkateboardHandler;
  * osztályt. Az XML-be íráshoz DOM-ot használ.
  */
 public class SkateboardDAOXMLImpl implements SkateboardDAO {
+	
+	/**
+	 * A naplózáshoz használt objektum.
+	 */
+	private static Logger logger = LoggerFactory.getLogger(SkateboardDAOXMLImpl.class);
 
 	/**
 	 * A gördeszkákat tartalmazó XML állományt kiolvasva visszaad egy listát, ami az
@@ -72,16 +79,13 @@ public class SkateboardDAOXMLImpl implements SkateboardDAO {
 			return handler.getSkateboards();
 			
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Kivétel: ", e);
 			return null;
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Kivétel: ", e);
 			return null;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Kivétel: ", e);
 			return null;
 		}
 		
@@ -159,6 +163,7 @@ public class SkateboardDAOXMLImpl implements SkateboardDAO {
 			
 			if(!dirPath.toFile().exists()){
 				dirPath.toFile().mkdir();
+				logger.info("A .your-dream-skateboard-builder nevű mappa még nem létezett, ezért létrehoztuk!");
 			}
 			
 			File file = filePath.toFile();
@@ -166,9 +171,9 @@ public class SkateboardDAOXMLImpl implements SkateboardDAO {
 			if(!file.exists()){
 				try {
 					file.createNewFile();
+					logger.info("A skateboards.xml nevű állomány még nem létezett, ezért létrehoztuk!");
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error("Kivétel: ", e);
 				}
 			}
 			
@@ -177,14 +182,11 @@ public class SkateboardDAOXMLImpl implements SkateboardDAO {
 			t.transform(source, result);
 			
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Kivétel: ", e);
 		} catch (TransformerConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Kivétel: ", e);
 		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Kivétel: ", e);
 		}
 		
 	}

@@ -2,6 +2,9 @@ package controllers;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import app.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,27 +19,29 @@ public class MainController {
 	private static final String ORDER = "/fxml/Order.fxml";
 	private static final String HELP = "/fxml/Help.fxml";
 	
+	private static Logger logger = LoggerFactory.getLogger(MainController.class);
+	
 	@FXML
 	private void newSkateboard(){
-		System.out.println("új deszka");
+		logger.info("Gördeszka szerkesztő ablak megnyitása...");
 		loadMenuPoint(SKATEBOARDEDITOR, "Gördeszka szerkesztő");
 	}
 	
 	@FXML
 	private void order(){
-		System.out.println("LEADTÁK A RENDELÉST");
+		logger.info("Rendelés készítő ablak megnyitása...");
 		loadMenuPoint(ORDER, "Rendelés");
 	}
 	
 	@FXML
 	private void help(){
-		System.out.println("SEGÍTSETEK!");
+		logger.info("Súgó ablak megnyitása...");
 		loadMenuPoint(HELP, "Súgó");
 	}
 	
 	@FXML
 	private void exit(){
-		System.out.println("kilépés");
+		logger.info("Az alkalmazás bezárása.");
 		Main.closeStage();
 	}
 	
@@ -57,8 +62,7 @@ public class MainController {
 			stage.showAndWait();
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Kivétel: ", e);
 		}
 		
 	}

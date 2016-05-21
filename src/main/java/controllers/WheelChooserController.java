@@ -1,5 +1,8 @@
 package controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import dao.impl.WheelDAOXMLImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +23,8 @@ import models.Wheel;
 public class WheelChooserController {
 	
 	private SkateboardEditorController sec;
+	
+	private static Logger logger = LoggerFactory.getLogger(WheelChooserController.class);
 	
 	@FXML
 	private TableView<Wheel> table;
@@ -86,11 +91,10 @@ public class WheelChooserController {
 			
 		});
 		
-		// TODO: a duplakattintás eseménye
+		// a duplakattintás eseménye
 		table.setOnMousePressed(new EventHandler<MouseEvent>() {
 
 			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
 				
 				if(event.isPrimaryButtonDown() && event.getClickCount()==2){
 					
@@ -98,7 +102,7 @@ public class WheelChooserController {
 					Wheel wheel = table.getSelectionModel().getSelectedItem();
 					
 					// kiírjuk
-					System.out.println(wheel);
+					logger.info("Új kerék kiválasztva: {}", wheel);
 					
 					// hozzáadjuk a "kosárhoz"
 					sec.setWheel(wheel);
@@ -118,6 +122,8 @@ public class WheelChooserController {
 		
 		// táblázat tartalmának beállítása
 		table.setItems(list);
+		
+		logger.info("Kerékválasztó ablak megnyitva!");
 		
 	}
 	

@@ -2,6 +2,9 @@ package app;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,15 +14,15 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	
 	private static Stage stage;
+	
+	private static Logger logger = LoggerFactory.getLogger(Main.class);
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		launch(args);
 	}
 
 	@Override
 	public void start(Stage stage){
-		// TODO Auto-generated method stub
 		
 		Main.stage = stage;
 		
@@ -34,9 +37,10 @@ public class Main extends Application {
 			stage.setResizable(false);
 			stage.show();
 			
+			logger.info("Az alkalmazás elindult.");
+			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Kivétel: ", e);
 		}
 		
 	}

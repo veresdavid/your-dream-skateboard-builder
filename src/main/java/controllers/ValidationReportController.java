@@ -1,5 +1,8 @@
 package controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import businesslogic.SkateboardValidator;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -14,6 +17,8 @@ public class ValidationReportController {
 	
 	private Image yes;
 	private Image no;
+	
+	private static Logger logger = LoggerFactory.getLogger(ValidationReportController.class);
 	
 	@FXML
 	private ImageView validName;
@@ -31,6 +36,8 @@ public class ValidationReportController {
 		skateboard = new Skateboard();
 		
 		loadImages();
+		
+		logger.info("Érvényességi jelentés ablaka megnyitva!");
 		
 	}
 	
@@ -55,8 +62,6 @@ public class ValidationReportController {
 	
 	public void validationReport(){
 		
-		System.out.println(skateboard);
-		
 		if(skateboardValidator.isCorrectName(skateboard.getName())){
 			validName.setImage(yes);
 		}else{
@@ -80,6 +85,8 @@ public class ValidationReportController {
 		}else{
 			validDeckAndTruck.setImage(no);
 		}
+		
+		logger.info("Érvényességi jelentés elkészült!");
 		
 	}
 

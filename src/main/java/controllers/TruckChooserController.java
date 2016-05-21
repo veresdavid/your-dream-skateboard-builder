@@ -1,5 +1,8 @@
 package controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import dao.impl.TruckDAOXMLImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +23,8 @@ import models.Truck;
 public class TruckChooserController {
 	
 	private SkateboardEditorController sec;
+	
+	private static Logger logger = LoggerFactory.getLogger(TruckChooserController.class);
 	
 	@FXML
 	private TableView<Truck> table;
@@ -86,11 +91,10 @@ public class TruckChooserController {
 			
 		});
 		
-		// TODO: a duplakattintás eseménye
+		// a duplakattintás eseménye
 		table.setOnMousePressed(new EventHandler<MouseEvent>() {
 
 			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
 				
 				if(event.isPrimaryButtonDown() && event.getClickCount()==2){
 					
@@ -98,7 +102,7 @@ public class TruckChooserController {
 					Truck truck = table.getSelectionModel().getSelectedItem();
 					
 					// kiírjuk
-					System.out.println(truck);
+					logger.info("Új felfüggesztés kiválasztva: {}", truck);
 					
 					// hozzáadjuk a "kosárhoz"
 					sec.setTruck(truck);
@@ -118,6 +122,8 @@ public class TruckChooserController {
 		
 		// táblázat tartalmának beállítása
 		table.setItems(list);
+		
+		logger.info("Felfüggesztésválasztó ablak megnyitva!");
 		
 	}
 	

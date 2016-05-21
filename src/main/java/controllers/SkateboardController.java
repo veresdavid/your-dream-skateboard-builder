@@ -1,5 +1,8 @@
 package controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import businesslogic.PriceCalculator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -16,6 +19,8 @@ public class SkateboardController {
 	
 	private PriceCalculator priceCalculator;
 	private Skateboard skateboard;
+	
+	private static Logger logger = LoggerFactory.getLogger(SkateboardController.class);
 	
 	@FXML
 	private Label name;
@@ -49,6 +54,8 @@ public class SkateboardController {
 		
 		skateboard = new Skateboard();
 		
+		logger.info("Gördeszka megtekintő ablak megnyitva!");
+		
 	}
 	
 	public void setSkateboard(Skateboard skateboard){
@@ -56,7 +63,6 @@ public class SkateboardController {
 	}
 	
 	public void showSkateboard(){
-		System.out.println("muti");
 		
 		showName();
 		showDeck();
@@ -65,6 +71,8 @@ public class SkateboardController {
 		showBearing();
 		showWheel();
 		showPrice();
+		
+		logger.info("Gördeszka betöltve, megjelenítve!");
 		
 	}
 	

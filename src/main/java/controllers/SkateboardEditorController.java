@@ -2,6 +2,9 @@ package controllers;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import businesslogic.PriceCalculator;
 import businesslogic.SkateboardValidator;
 import dao.impl.SkateboardDAOXMLImpl;
@@ -31,6 +34,8 @@ public class SkateboardEditorController {
 	private static final String GRIPTAPECHOOSER = "/fxml/GriptapeChooser.fxml";
 	private static final String VALIDATIONREPORT = "/fxml/ValidationReport.fxml";
 	
+	private static Logger logger = LoggerFactory.getLogger(SkateboardEditorController.class);
+	
 	private Skateboard skateboard;
 	
 	private PriceCalculator priceCalculator;
@@ -53,18 +58,20 @@ public class SkateboardEditorController {
 	
 	@FXML
 	private void initialize(){
-		System.out.println("SkateboardEditorController initialize");
 		
-		// üres gördeszka létrehozása
 		skateboard = new Skateboard();
 		
 		priceCalculator = new PriceCalculator();
 		skateboardValidator = new SkateboardValidator();
 		
+		logger.info("Gördeszka szerkesztő ablak megnyitva!");
+		
 	}
 	
 	@FXML
 	private void chooseDeck(){
+		
+		logger.info("Lap választó ablak megnyitása...");
 		
 		try {
 			
@@ -77,14 +84,15 @@ public class SkateboardEditorController {
 			loadAccessoryChooser(root, "Lapok");
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Kivétel: ", e);
 		}
 		
 	}
 	
 	@FXML
 	private void chooseBearing(){
+		
+		logger.info("Csapágy választó ablak megnyitása...");
 		
 		try {
 			
@@ -97,14 +105,15 @@ public class SkateboardEditorController {
 			loadAccessoryChooser(root, "Csapágyak");
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Kivétel: ", e);
 		}
 		
 	}
 	
 	@FXML
 	private void chooseTruck(){
+		
+		logger.info("Felfüggesztés választó ablak megnyitása...");
 		
 		try {
 			
@@ -117,14 +126,15 @@ public class SkateboardEditorController {
 			loadAccessoryChooser(root, "Felfüggesztések");
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Kivétel: ", e);
 		}
 		
 	}
 	
 	@FXML
 	private void chooseWheel(){
+		
+		logger.info("Kerék választó ablak megnyitása...");
 		
 		try {
 			
@@ -137,14 +147,15 @@ public class SkateboardEditorController {
 			loadAccessoryChooser(root, "Kerekek");
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Kivétel: ", e);
 		}
 		
 	}
 	
 	@FXML
 	private void chooseGriptape(){
+		
+		logger.info("Smirgli választó ablak megnyitása...");
 		
 		try {
 			
@@ -157,8 +168,7 @@ public class SkateboardEditorController {
 			loadAccessoryChooser(root, "Smirglik");
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Kivétel: ", e);
 		}
 		
 	}
@@ -166,7 +176,7 @@ public class SkateboardEditorController {
 	@FXML
 	private void validate(){
 		
-		System.out.println("Ellenőrzés");
+		logger.info("Érvényességi jelentés készítése...");
 		
 		collectData();
 		
@@ -190,15 +200,13 @@ public class SkateboardEditorController {
 			stage.showAndWait();
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Kivétel: ", e);
 		}
 		
 	}
 	
 	@FXML
 	private void save(){
-		System.out.println("Mentés");
 		
 		collectData();
 		
@@ -210,11 +218,15 @@ public class SkateboardEditorController {
 			
 			saveSuccess();
 			
+			logger.info("A gördeszka mentése sikeres volt!");
+			
 			closeStage();
 			
 		}else{
 			
 			saveFail();
+			
+			logger.warn("A gördeszkát nem tudtuk menteni, az összeállítás nem érvényes!");
 			
 		}
 		

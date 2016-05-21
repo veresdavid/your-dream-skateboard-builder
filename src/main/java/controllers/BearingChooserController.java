@@ -1,5 +1,8 @@
 package controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import dao.impl.BearingDAOXMLImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +23,8 @@ import models.Bearing;
 public class BearingChooserController {
 	
 	private SkateboardEditorController sec;
+	
+	private static Logger logger = LoggerFactory.getLogger(BearingChooserController.class);
 	
 	@FXML
 	private TableView<Bearing> table;
@@ -86,11 +91,10 @@ public class BearingChooserController {
 			
 		});
 		
-		// TODO: a duplakattintás eseménye
+		// a duplakattintás eseménye
 		table.setOnMousePressed(new EventHandler<MouseEvent>() {
 
 			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
 				
 				if(event.isPrimaryButtonDown() && event.getClickCount()==2){
 					
@@ -98,7 +102,7 @@ public class BearingChooserController {
 					Bearing bearing = table.getSelectionModel().getSelectedItem();
 					
 					// kiírjuk
-					System.out.println(bearing);
+					logger.info("Új csapágy kiválasztva: {}", bearing);
 					
 					// hozzáadjuk a "kosárhoz"
 					sec.setBearing(bearing);
@@ -118,6 +122,8 @@ public class BearingChooserController {
 		
 		// táblázat tartalmának beállítása
 		table.setItems(list);
+		
+		logger.info("Csapágyválasztó ablak megnyitva!");
 		
 	}
 	

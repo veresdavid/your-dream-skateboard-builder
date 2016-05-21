@@ -1,5 +1,8 @@
 package controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import dao.impl.GriptapeDAOXMLImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +23,8 @@ import models.Griptape;
 public class GriptapeChooserController {
 	
 	private SkateboardEditorController sec;
+	
+	private static Logger logger = LoggerFactory.getLogger(GriptapeChooserController.class);
 	
 	@FXML
 	private TableView<Griptape> table;
@@ -86,11 +91,10 @@ public class GriptapeChooserController {
 			
 		});
 		
-		// TODO: a duplakattintás eseménye
+		// a duplakattintás eseménye
 		table.setOnMousePressed(new EventHandler<MouseEvent>() {
 
 			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
 				
 				if(event.isPrimaryButtonDown() && event.getClickCount()==2){
 					
@@ -98,7 +102,7 @@ public class GriptapeChooserController {
 					Griptape griptape = table.getSelectionModel().getSelectedItem();
 					
 					// kiírjuk
-					System.out.println(griptape);
+					logger.info("Új smirgli kiválasztva: {}", griptape);
 					
 					// hozzáadjuk a "kosárhoz"
 					sec.setGriptape(griptape);
@@ -118,6 +122,8 @@ public class GriptapeChooserController {
 		
 		// táblázat tartalmának beállítása
 		table.setItems(list);
+		
+		logger.info("Smirgliválasztó ablak megnyitva!");
 		
 	}
 	

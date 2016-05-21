@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import businesslogic.OrderValidator;
 import dao.impl.OrderDAOXMLImpl;
 import dao.impl.SkateboardDAOXMLImpl;
@@ -31,6 +34,8 @@ public class OrderController {
 	
 	private OrderValidator orderValidator;
 	
+	private static Logger logger = LoggerFactory.getLogger(OrderController.class);
+	
 	@FXML
 	private ComboBox<Skateboard> skateboardsComboBox;
 	@FXML
@@ -50,9 +55,12 @@ public class OrderController {
 		Skateboard skateboard = skateboardsComboBox.getSelectionModel().getSelectedItem();
 		
 		if(skateboard!=null){
-			System.out.println(skateboard);
+			
+			logger.info("Gördeszka megtekintése: {}", skateboard);
 			
 			try {
+				
+				logger.info("Gördeszka megtekintő ablak megnyitása...");
 				
 				FXMLLoader loader = new FXMLLoader(getClass().getResource(SKATEBOARDFXML));
 				Parent root = (Parent) loader.load();
@@ -72,8 +80,7 @@ public class OrderController {
 				stage.showAndWait();
 				
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error("Kivétel: ", e);
 			}
 			
 		}
@@ -93,10 +100,16 @@ public class OrderController {
 			
 			orderSuccess();
 			
+			logger.info("A rendelést sikeresen leadtuk!");
+			
 			closeStage();
 			
 		}else{
+			
 			orderFail();
+			
+			logger.warn("Nem sikerült leadni a rendelést!");
+			
 		}
 		
 	}
@@ -119,6 +132,8 @@ public class OrderController {
 		ObservableList<Skateboard> list = FXCollections.observableArrayList(skateboards);
 		
 		skateboardsComboBox.setItems(list);
+		
+		logger.info("Rendelés készítő ablak megnyitva!");
 		
 	}
 	

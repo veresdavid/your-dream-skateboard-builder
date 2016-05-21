@@ -1,5 +1,8 @@
 package controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import dao.impl.DeckDAOXMLImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +23,8 @@ import models.Deck;
 public class DeckChooserController {
 	
 	private SkateboardEditorController sec;
+	
+	private static Logger logger = LoggerFactory.getLogger(DeckChooserController.class);
 	
 	@FXML
 	private TableView<Deck> table;
@@ -86,19 +91,18 @@ public class DeckChooserController {
 			
 		});
 		
-		// TODO: a duplakattintás eseménye
+		// a duplakattintás eseménye
 		table.setOnMousePressed(new EventHandler<MouseEvent>() {
 
 			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
 				
 				if(event.isPrimaryButtonDown() && event.getClickCount()==2){
 					
-					// a kiválasztott deszka
+					// a kiválasztott lap
 					Deck deck = table.getSelectionModel().getSelectedItem();
 					
 					// kiírjuk
-					System.out.println(deck);
+					logger.info("Új lap kiválasztva: {}", deck);
 					
 					// hozzáadjuk a "kosárhoz"
 					sec.setDeck(deck);
@@ -118,6 +122,8 @@ public class DeckChooserController {
 		
 		// táblázat tartalmának beállítása
 		table.setItems(list);
+		
+		logger.info("Lapválasztó ablak megnyitva!");
 		
 	}
 	

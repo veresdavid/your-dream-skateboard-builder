@@ -6,6 +6,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 import dao.BearingDAO;
@@ -18,6 +20,11 @@ import saxhandlers.BearingHandler;
  * osztályt.
  */
 public class BearingDAOXMLImpl implements BearingDAO {
+	
+	/**
+	 * A naplózáshoz használt objektum.
+	 */
+	private static Logger logger = LoggerFactory.getLogger(BearingDAOXMLImpl.class);
 
 	/**
 	 * A csapágyakat tartalmazó XML állományt kiolvasva visszaad egy listát, ami az
@@ -41,16 +48,13 @@ public class BearingDAOXMLImpl implements BearingDAO {
 			return handler.getBearings();
 			
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Kivétel: ", e);
 			return null;
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Kivétel: ", e);
 			return null;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Kivétel: ", e);
 			return null;
 		}
 		
