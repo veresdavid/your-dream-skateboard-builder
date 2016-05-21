@@ -140,7 +140,9 @@ public class Wheel {
 	}
 	
 	/**
-	 * A kerék sztring reprezentációját adja vissza.
+	 * A kerék sztring reprezentációját adja vissza. Ennek előállításához az 
+	 * {@code org.apache.commons.lang3.builder.ReflectionToStringBuilder} osztályt
+	 * használjuk fel.
 	 * 
 	 * @return a kerék sztring reprezentációja
 	 */

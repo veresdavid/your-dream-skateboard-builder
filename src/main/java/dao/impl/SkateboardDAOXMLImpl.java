@@ -30,8 +30,23 @@ import dao.SkateboardDAO;
 import models.Skateboard;
 import saxhandlers.SkateboardHandler;
 
+/**
+ * A {@link dao.SkateboardDAO} interfésznek egy XML feldolgozással történő megvalósítása.
+ * Az XML beolvasás SAX-al történik, ehhez segítségül hívjuk a {@link saxhandlers.BearingHandler}
+ * osztályt. Az XML-be íráshoz DOM-ot használ.
+ */
 public class SkateboardDAOXMLImpl implements SkateboardDAO {
 
+	/**
+	 * A gördeszkákat tartalmazó XML állományt kiolvasva visszaad egy listát, ami az
+	 * összes gördeszkát tartalmazza. Ezt az XML állományt a felhasználó home könyvtárában
+	 * a .your-dream-skateboard-builder nevű mappa alatt, skateboards.xml néven fogja
+	 * keresni. Amennyiben az állomány még nem létezik, a függvény {@code null}
+	 * értékkel tér vissza. Bármilyen fellépő hiba esetén a függvény {@code null}
+	 * értéket ad vissza.
+	 * 
+	 * @return az összes gördeszkát tartalmazó lista, vagy {@code null} érték
+	 */
 	public List<Skateboard> getAllSkateboards() {
 		
 		SAXParserFactory spf = SAXParserFactory.newInstance();
@@ -59,18 +74,26 @@ public class SkateboardDAOXMLImpl implements SkateboardDAO {
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		} catch (SAXException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
 		
-		return null;
 	}
 
-	@Override
+	/**
+	 * A paraméterként megadott gördeszkát elmenti a felhasználó home könyvtárán belül
+	 * a .your-dream-skateboard-builder mappában található skateboards.xml állományba.
+	 * Amennyiben a mappa és a fájl még nem léteznek, a függvény létrehozza őket.
+	 * 
+	 * @param skateboard a gördeszka, amit el akarunk menteni
+	 */
 	public void insert(Skateboard skateboard) {
 		
 		List<Skateboard> skateboards = getAllSkateboards();

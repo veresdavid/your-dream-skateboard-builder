@@ -12,8 +12,20 @@ import dao.GriptapeDAO;
 import models.Griptape;
 import saxhandlers.GriptapeHandler;
 
+/**
+ * A {@link dao.GriptapeDAO} interfésznek egy XML feldolgozással történő megvalósítása.
+ * Az XML beolvasás SAX-al történik, ehhez segítségül hívjuk a {@link saxhandlers.BearingHandler}
+ * osztályt.
+ */
 public class GriptapeDAOXMLImpl implements GriptapeDAO {
 
+	/**
+	 * A smirgliket tartalmazó XML állományt kiolvasva visszaad egy listát, ami az
+	 * összes smirglit tartalmazza. Bármilyen fellépő hiba esetén a függvény {@code null}
+	 * értéket ad vissza.
+	 * 
+	 * @return az összes smirglit tartalmazó lista, vagy {@code null} érték
+	 */
 	public List<Griptape> getAllGriptapes() {
 		
 		SAXParserFactory spf = SAXParserFactory.newInstance();
@@ -31,18 +43,28 @@ public class GriptapeDAOXMLImpl implements GriptapeDAO {
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		} catch (SAXException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
-		
-		return null;
+
 	}
 
-	@Override
+	/**
+	 * A {@link #getAllGriptapes()} függvény által adott listából visszaadja azt a
+	 * smirglit, aminek az azonosítója megegyezik a paraméterként kapott
+	 * azonosítóval. Ha nincs ilyen smirgli, akkor {@code null} értéket ad vissza a
+	 * függvény. 
+	 * 
+	 * @param id annak a smirglinek az azonosítója, amit meg szeretnénk kapni
+	 * @return a választott azonosítóval rendelkező smirgli, vagy {@code null} érték
+	 */
 	public Griptape getGriptapeById(String id) {
 		for (Griptape griptape : getAllGriptapes()) {
 			if(griptape.getId().equals(id))

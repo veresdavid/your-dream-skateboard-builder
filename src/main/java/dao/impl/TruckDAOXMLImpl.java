@@ -12,8 +12,20 @@ import dao.TruckDAO;
 import models.Truck;
 import saxhandlers.TruckHandler;
 
+/**
+ * A {@link dao.TruckDAO} interfésznek egy XML feldolgozással történő megvalósítása.
+ * Az XML beolvasás SAX-al történik, ehhez segítségül hívjuk a {@link saxhandlers.BearingHandler}
+ * osztályt.
+ */
 public class TruckDAOXMLImpl implements TruckDAO {
 
+	/**
+	 * A felfüggesztéseket tartalmazó XML állományt kiolvasva visszaad egy listát, ami az
+	 * összes felfüggesztést tartalmazza. Bármilyen fellépő hiba esetén a függvény {@code null}
+	 * értéket ad vissza.
+	 * 
+	 * @return az összes felfüggesztést tartalmazó lista, vagy {@code null} érték
+	 */
 	public List<Truck> getAllTrucks() {
 		
 		SAXParserFactory spf = SAXParserFactory.newInstance();
@@ -31,18 +43,28 @@ public class TruckDAOXMLImpl implements TruckDAO {
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		} catch (SAXException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
 		
-		return null;
 	}
 
-	@Override
+	/**
+	 * A {@link #getAllTrucks()} függvény által adott listából visszaadja azt a
+	 * felfüggesztést, aminek az azonosítója megegyezik a paraméterként kapott
+	 * azonosítóval. Ha nincs ilyen felfüggesztés, akkor {@code null} értéket ad vissza a
+	 * függvény. 
+	 * 
+	 * @param id annak a felfüggesztésnek az azonosítója, amit meg szeretnénk kapni
+	 * @return a választott azonosítóval rendelkező felfüggesztés, vagy {@code null} érték
+	 */
 	public Truck getTruckById(String id) {
 		for (Truck truck : getAllTrucks()) {
 			if(truck.getId().equals(id))

@@ -24,9 +24,20 @@ import org.w3c.dom.Element;
 import dao.OrderDAO;
 import models.Order;
 
+/**
+ * Az {@link dao.OrderDAO} interfésznek egy XML feldolgozással történő megvalósítása.
+ * Az XML íráshoz DOM-ot használ.
+ */
 public class OrderDAOXMLImpl implements OrderDAO {
 
-	@Override
+	/**
+	 * A függvény a paraméterként megkapott rendelést elmenti egy XML állományban,
+	 * ami a felhasználó home könyvtárán belül a .your-dream-skateboard-builder
+	 * nevű mappában lesz megtalálható. Amennyiben ez a mappa még nem létezik, a
+	 * függvény létrehozza azt.
+	 * 
+	 * @param order az a rendelés, amit el szeretnénk menteni
+	 */
 	public void saveOrder(Order order) {
 		
 		if(order!=null){

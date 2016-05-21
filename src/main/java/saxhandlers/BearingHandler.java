@@ -8,15 +8,41 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import models.Bearing;
 
+/**
+ * A csapágyakat {@link models.Bearing} tartalmazó XML állomány feldolgozását segítő
+ * osztály.
+ */
 public class BearingHandler extends DefaultHandler {
 	
+	/**
+	 * A felsorolásban található elemek jelzik, hogy a csapágyakat tartalmazó XML
+	 * feldolgozása során milyen elemekre futhatunk rá.
+	 */
 	public static enum Status { NOTHING, BRAND, NAME, CATEGORY, PRICE, IMAGE };
 	
+	/**
+	 * Jelzi, hogy az XML feldolgozás során éppen milyen elemre futottunk rá.
+	 */
 	private Status status = Status.NOTHING;
 	
+	/**
+	 * Egy csapágy, amit az XML feldolgozás során éppen kiolvasunk.
+	 */
 	private Bearing bearing;
+	/**
+	 * Egy lista, ami tartalmazza az XML-ből kiolvasott csapágyakat.
+	 */
 	private List<Bearing> bearings;
 
+	/**
+	 * Kiolvassuk annak az elemnek az értékét, amin éppen állunk, és a készülő csapágy
+	 * megfelelő változóját beállítjuk erre az értékre.
+	 * 
+	 * @param ch a karakterek tömbje
+	 * @param start a kezdőpozíció a karaktertömbön belül
+	 * @param length azon karakterek száma, amennyit fel akarunk használni a karaktertömbből
+	 * @throws SAXException bármilyen SAX-os kivétel
+	 */
 	@Override
 	public void characters(char[] ch, int start, int length) throws SAXException {
 		
@@ -36,6 +62,15 @@ public class BearingHandler extends DefaultHandler {
 		
 	}
 
+	/**
+	 * Hozzáadjuk az éppen kiolvasott csapágyat a már kiolvasott csapágyak listájához,
+	 * ha ráfutottunk a csapágy záróelemére.
+	 * 
+	 * @param uri a névtér URI, vagy üres sztring
+	 * @param localName lokális név, vagy üres sztring
+	 * @param qName a záró elem neve
+	 * @throws SAXException bármilyen SAX-os kivétel
+	 */
 	@Override
 	public void endElement(String uri, String localName, String qName) throws SAXException {
 		
@@ -45,6 +80,17 @@ public class BearingHandler extends DefaultHandler {
 		
 	}
 
+	/**
+	 * Egy kezdőelemre ráfutva elvégezzük a megfelelő műveleteket, például módosítjuk
+	 * a {@code status} változót, vagy a létrehozunk egy üres csapágy objektumot, vagy
+	 * létrehozzuk a csapágyak listáját.
+	 * 
+	 * @param uri a névtér URI, vagy üres sztring
+	 * @param localName lokális név, vagy üres sztring
+	 * @param qName a kezdő elem neve
+	 * @param attributes az elem attribútumait tartalmazó objektum
+	 * @throws SAXException bármilyen SAX-os kivétel
+	 */
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 		
@@ -70,6 +116,11 @@ public class BearingHandler extends DefaultHandler {
 		
 	}
 
+	/**
+	 * Visszaad egy listát, ami tartalmazza az összes, XML-ből kiolvasott csapágyat.
+	 * 
+	 * @return az XML-ből kiolvasott csapágyakat tartalmazó lista
+	 */
 	public List<Bearing> getBearings() {
 		return bearings;
 	}

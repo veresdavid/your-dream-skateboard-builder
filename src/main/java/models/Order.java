@@ -141,7 +141,9 @@ public class Order {
 	}
 
 	/**
-	 * A rendelés sztring reprezentációját adja vissza.
+	 * A rendelés sztring reprezentációját adja vissza. Ennek előállításához az 
+	 * {@code org.apache.commons.lang3.builder.ReflectionToStringBuilder} osztályt
+	 * használjuk fel.
 	 * 
 	 * @return a rendelés sztring reprezentációja
 	 */

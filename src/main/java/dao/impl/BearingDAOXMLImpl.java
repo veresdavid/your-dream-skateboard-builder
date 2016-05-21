@@ -12,8 +12,20 @@ import dao.BearingDAO;
 import models.Bearing;
 import saxhandlers.BearingHandler;
 
+/**
+ * A {@link dao.BearingDAO} interfésznek egy XML feldolgozással történő megvalósítása.
+ * Az XML beolvasás SAX-al történik, ehhez segítségül hívjuk a {@link saxhandlers.BearingHandler}
+ * osztályt.
+ */
 public class BearingDAOXMLImpl implements BearingDAO {
 
+	/**
+	 * A csapágyakat tartalmazó XML állományt kiolvasva visszaad egy listát, ami az
+	 * összes csapágyat tartalmazza. Bármilyen fellépő hiba esetén a függvény {@code null}
+	 * értéket ad vissza.
+	 * 
+	 * @return az összes csapágyat tartalmazó lista, vagy {@code null} érték
+	 */
 	public List<Bearing> getAllBearings() {
 		
 		SAXParserFactory spf = SAXParserFactory.newInstance();
@@ -31,18 +43,28 @@ public class BearingDAOXMLImpl implements BearingDAO {
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		} catch (SAXException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
-		
-		return null;
 		
 	}
 
+	/**
+	 * A {@link #getAllBearings()} függvény által adott listából visszaadja azt a
+	 * csapágyat, aminek az azonosítója megegyezik a paraméterként kapott
+	 * azonosítóval. Ha nincs ilyen csapágy, akkor {@code null} értéket ad vissza a
+	 * függvény. 
+	 * 
+	 * @param id annak a csapágynak az azonosítója, amit meg szeretnénk kapni
+	 * @return a választott azonosítóval rendelkező csapágy, vagy {@code null} érték
+	 */
 	public Bearing getBearingById(String id) {
 		for (Bearing bearing : getAllBearings()) {
 			if(bearing.getId().equals(id))

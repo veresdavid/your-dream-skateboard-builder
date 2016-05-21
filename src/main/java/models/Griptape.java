@@ -140,7 +140,9 @@ public class Griptape {
 	}
 
 	/**
-	 * A smirgli sztring reprezentációját adja vissza.
+	 * A smirgli sztring reprezentációját adja vissza. Ennek előállításához az 
+	 * {@code org.apache.commons.lang3.builder.ReflectionToStringBuilder} osztályt
+	 * használjuk fel.
 	 * 
 	 * @return a smirgli sztring reprezentációja
 	 */

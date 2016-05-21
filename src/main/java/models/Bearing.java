@@ -140,7 +140,9 @@ public class Bearing {
 	}
 	
 	/**
-	 * A csapágy sztring reprezentációját adja vissza.
+	 * A csapágy sztring reprezentációját adja vissza. Ennek előállításához az 
+	 * {@code org.apache.commons.lang3.builder.ReflectionToStringBuilder} osztályt
+	 * használjuk fel.
 	 * 
 	 * @return a csapágy sztring reprezentációja
 	 */

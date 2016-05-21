@@ -8,15 +8,41 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import models.Truck;
 
+/**
+ * A felfüggesztéseket {@link models.Truck} tartalmazó XML állomány feldolgozását segítő
+ * osztály.
+ */
 public class TruckHandler extends DefaultHandler {
 	
+	/**
+	 * A felsorolásban található elemek jelzik, hogy a felfüggesztéseket tartalmazó XML
+	 * feldolgozása során milyen elemekre futhatunk rá.
+	 */
 	public static enum Status { NOTHING, BRAND, NAME, MODEL, PRICE, IMAGE };
 	
+	/**
+	 * Jelzi, hogy az XML feldolgozás során éppen milyen elemre futottunk rá.
+	 */
 	private Status status = Status.NOTHING;
 	
+	/**
+	 * Egy felfüggesztés, amit az XML feldolgozás során éppen kiolvasunk.
+	 */
 	private Truck truck;
+	/**
+	 * Egy lista, ami tartalmazza az XML-ből kiolvasott felfüggesztéseket.
+	 */
 	private List<Truck> trucks;
 
+	/**
+	 * Kiolvassuk annak az elemnek az értékét, amin éppen állunk, és a készülő felfüggesztés
+	 * megfelelő változóját beállítjuk erre az értékre.
+	 * 
+	 * @param ch a karakterek tömbje
+	 * @param start a kezdőpozíció a karaktertömbön belül
+	 * @param length azon karakterek száma, amennyit fel akarunk használni a karaktertömbből
+	 * @throws SAXException bármilyen SAX-os kivétel
+	 */
 	@Override
 	public void characters(char[] ch, int start, int length) throws SAXException {
 		
@@ -36,6 +62,15 @@ public class TruckHandler extends DefaultHandler {
 		
 	}
 
+	/**
+	 * Hozzáadjuk az éppen kiolvasott felfüggesztést a már kiolvasott felfüggesztések
+	 * listájához, ha ráfutottunk a felfüggesztés záróelemére.
+	 * 
+	 * @param uri a névtér URI, vagy üres sztring
+	 * @param localName lokális név, vagy üres sztring
+	 * @param qName a záró elem neve
+	 * @throws SAXException bármilyen SAX-os kivétel
+	 */
 	@Override
 	public void endElement(String uri, String localName, String qName) throws SAXException {
 		
@@ -45,6 +80,17 @@ public class TruckHandler extends DefaultHandler {
 		
 	}
 
+	/**
+	 * Egy kezdőelemre ráfutva elvégezzük a megfelelő műveleteket, például módosítjuk
+	 * a {@code status} változót, vagy a létrehozunk egy üres felfüggesztés objektumot,
+	 * vagy létrehozzuk a felfüggesztések listáját.
+	 * 
+	 * @param uri a névtér URI, vagy üres sztring
+	 * @param localName lokális név, vagy üres sztring
+	 * @param qName a kezdő elem neve
+	 * @param attributes az elem attribútumait tartalmazó objektum
+	 * @throws SAXException bármilyen SAX-os kivétel
+	 */
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 		
@@ -70,6 +116,11 @@ public class TruckHandler extends DefaultHandler {
 		
 	}
 
+	/**
+	 * Visszaad egy listát, ami tartalmazza az összes, XML-ből kiolvasott felfüggesztést.
+	 * 
+	 * @return az XML-ből kiolvasott felfüggesztéseket tartalmazó lista
+	 */
 	public List<Truck> getTrucks() {
 		return trucks;
 	}

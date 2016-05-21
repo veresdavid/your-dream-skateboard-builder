@@ -140,7 +140,9 @@ public class Deck {
 	}
 
 	/**
-	 * A lap sztring reprezentációját adja vissza.
+	 * A lap sztring reprezentációját adja vissza. Ennek előállításához az 
+	 * {@code org.apache.commons.lang3.builder.ReflectionToStringBuilder} osztályt
+	 * használjuk fel.
 	 * 
 	 * @return a lap sztring reprezentációja
 	 */

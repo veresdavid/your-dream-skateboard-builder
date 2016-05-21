@@ -19,15 +19,42 @@ import models.Skateboard;
 import models.Truck;
 import models.Wheel;
 
+/**
+ * A gördeszkákat {@link models.Skateboard} tartalmazó XML állomány feldolgozását segítő
+ * osztály.
+ */
 public class SkateboardHandler extends DefaultHandler {
 	
+	/**
+	 * A felsorolásban található elemek jelzik, hogy a gördeszkákat tartalmazó XML
+	 * feldolgozása során milyen elemekre futhatunk rá.
+	 */
 	public static enum Status { NOTHING, NAME, BEARINGID, DECKID, GRIPTAPEID, TRUCKID, WHEELID };
 	
+	/**
+	 * Jelzi, hogy az XML feldolgozás során éppen milyen elemre futottunk rá.
+	 */
 	private Status status = Status.NOTHING;
 	
+	/**
+	 * Egy gördeszka, amit az XML feldolgozás során éppen kiolvasunk.
+	 */
 	private Skateboard skateboard;
+	/**
+	 * Egy lista, ami tartalmazza az XML-ből kiolvasott gördeszkákat.
+	 */
 	private List<Skateboard> skateboards;
 
+	/**
+	 * Kiolvassuk annak az elemnek az értékét, amin éppen állunk, ez egy gördeszka
+	 * alkatrésznek az azonosítója. Lekérjük az adatbázisból az ezzel az azonosítóval
+	 * rendelkező megfelelő alkatrészt, és hozzáadjuk a gördeszkához.
+	 * 
+	 * @param ch a karakterek tömbje
+	 * @param start a kezdőpozíció a karaktertömbön belül
+	 * @param length azon karakterek száma, amennyit fel akarunk használni a karaktertömbből
+	 * @throws SAXException bármilyen SAX-os kivétel
+	 */
 	@Override
 	public void characters(char[] ch, int start, int length) throws SAXException {
 		
@@ -64,6 +91,15 @@ public class SkateboardHandler extends DefaultHandler {
 		
 	}
 
+	/**
+	 * Hozzáadjuk az éppen kiolvasott gördeszkát a már kiolvasott gördeszkák listájához,
+	 * ha ráfutottunk a gördeszka záróelemére.
+	 * 
+	 * @param uri a névtér URI, vagy üres sztring
+	 * @param localName lokális név, vagy üres sztring
+	 * @param qName a záró elem neve
+	 * @throws SAXException bármilyen SAX-os kivétel
+	 */
 	@Override
 	public void endElement(String uri, String localName, String qName) throws SAXException {
 		
@@ -73,6 +109,17 @@ public class SkateboardHandler extends DefaultHandler {
 		
 	}
 
+	/**
+	 * Egy kezdőelemre ráfutva elvégezzük a megfelelő műveleteket, például módosítjuk
+	 * a {@code status} változót, vagy a létrehozunk egy üres gördeszka objektumot, vagy
+	 * létrehozzuk a gördeszkák listáját.
+	 * 
+	 * @param uri a névtér URI, vagy üres sztring
+	 * @param localName lokális név, vagy üres sztring
+	 * @param qName a kezdő elem neve
+	 * @param attributes az elem attribútumait tartalmazó objektum
+	 * @throws SAXException bármilyen SAX-os kivétel
+	 */
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 		
@@ -98,6 +145,11 @@ public class SkateboardHandler extends DefaultHandler {
 		
 	}
 
+	/**
+	 * Visszaad egy listát, ami tartalmazza az összes, XML-ből kiolvasott gördeszkát.
+	 * 
+	 * @return az XML-ből kiolvasott gördeszkákat tartalmazó lista
+	 */
 	public List<Skateboard> getSkateboards() {
 		return skateboards;
 	}
