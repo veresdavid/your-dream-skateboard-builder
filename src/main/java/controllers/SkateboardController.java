@@ -1,3 +1,5 @@
+// CHECKSTYLE:OFF
+
 package controllers;
 
 import org.slf4j.Logger;

@@ -1,3 +1,5 @@
+// CHECKSTYLE:OFF
+
 package controllers;
 
 import java.io.IOException;
