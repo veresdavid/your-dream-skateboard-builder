@@ -133,8 +133,6 @@ public class OrderDAOXMLImpl implements OrderDAO {
 				String fileName = "order_" + formatter.format(now) + ".xml";
 				Path filePath = Paths.get(System.getProperty("user.home"), ".your-dream-skateboard-builder", fileName);
 				
-				System.out.println(filePath);
-				
 				if(!dirPath.toFile().exists()){
 					dirPath.toFile().mkdir();
 					logger.info("A .your-dream-skateboard-builder nevű mappa még nem létezett, ezért létrehoztuk!");
